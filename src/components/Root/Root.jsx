@@ -11,9 +11,7 @@ import {
   bindThemeParamsCSSVars,
   bindViewportCSSVars,
 } from '@tma.js/sdk-react';
-import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { AppRoot } from '@telegram-apps/telegram-ui';
-
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { ErrorPage } from '@/components/ErrorPage';
 import { useTelegramMock } from '@/hooks/useTelegramMock';
@@ -57,9 +55,7 @@ function RootInner({ children }) {
   }
 
   const debug = useLaunchParams().startParam === 'debug';
-  const manifestUrl = useMemo(() => {
-    return new URL('tonconnect-manifest.json', window.location.href).toString();
-  }, []);
+
 
   // Enable debug mode to see all the methods sent and events received.
   useEffect(() => {
@@ -69,13 +65,11 @@ function RootInner({ children }) {
   }, [debug]);
 
   return (
-    <TonConnectUIProvider manifestUrl={manifestUrl}>
       <SDKProvider acceptCustomStyles debug={debug}>
         <App>
           {children}
         </App>
       </SDKProvider>
-    </TonConnectUIProvider>
   );
 }
 

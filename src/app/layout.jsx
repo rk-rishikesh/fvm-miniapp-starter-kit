@@ -5,8 +5,8 @@ import 'normalize.css/normalize.css';
 import './_assets/globals.css';
 
 export const metadata = {
-  title: 'Your Application Title Goes Here',
-  description: 'Your application description goes here',
+  title: 'FVM Data Depot',
+  description: 'Data prep for deal making made easy.',
 };
 
 export default function RootLayout({ children }) {
