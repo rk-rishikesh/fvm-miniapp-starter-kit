@@ -6,11 +6,9 @@ import {
   Image,
   List,
   Placeholder,
-  Button,
-  Banner,
   FileInput,
 } from "@telegram-apps/telegram-ui";
-import tonSvg from "./_assets/ton.svg";
+import { Link } from "@/components/Link/Link";
 // Date Prep Helpers
 import { CarWriter } from "@ipld/car";
 import { importer } from "ipfs-unixfs-importer";
@@ -53,7 +51,7 @@ const generateCommP = async (bytes, setPieceSize, setPieceCID) => {
   setPieceCID(cid.toString());
 };
 
-function CarDownloadLink({
+function CarGeneratorLink({
   files,
   className,
   children,
@@ -85,7 +83,7 @@ function CarDownloadLink({
   }, [files]);
 
   return carUrl ? (
-    <a className={className} href={carUrl} download={`${rootCid}.car`}>
+    <a href={carUrl} download className="z-99">
       {children}
     </a>
   ) : null;
@@ -230,7 +228,7 @@ export default function Home() {
             <Cell subtitle={pieceCID ? pieceCID : "..."}>PIECE CID</Cell>
           </Section>
         ) : null}
-        <CarDownloadLink
+        <CarGeneratorLink
           files={files}
           rootCid={rootCid}
           setRootCid={setRootCid}
@@ -239,12 +237,7 @@ export default function Home() {
           setPieceCID={setPieceCID}
           className="db mt4 pa3 mw5 center white link bg-blue f5 fw6 br1"
         >
-          <Section>
-            <Cell>
-              <Button size="s">Download .car file</Button>
-            </Cell>
-          </Section>
-        </CarDownloadLink>
+        </CarGeneratorLink>
       </List>
     </div>
   );
